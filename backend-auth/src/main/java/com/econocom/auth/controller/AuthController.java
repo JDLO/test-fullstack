@@ -20,8 +20,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
-        String mockEmail = "";
-        String mockPassword = "";
+        String mockEmail = "admin@admin.com";
+        String mockPassword = "somepassword123";
 
         if(mockEmail.equalsIgnoreCase(loginRequest.getEmail()) &&
             mockPassword.equals(loginRequest.getPassword())){
@@ -30,7 +30,7 @@ public class AuthController {
 
             Map<String, Object> response = new HashMap<>();
             response.put("status", "success");
-            response.put("message", "Autenticación exitosa");
+            response.put("message", "Authentication success");
             response.put("token", token);
 
             return ResponseEntity.ok(response);
