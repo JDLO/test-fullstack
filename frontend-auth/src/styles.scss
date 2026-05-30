@@ -12,3 +12,7 @@
 @import "assets/scss/3-tools/notouch-hover";
 @import "assets/scss/3-tools/fluid-type";
 @import "assets/scss/3-tools/nth-child";
+
+//Add custom material theme
+@import "assets/scss/custom-material-theme.scss";
+@import "assets/scss/material-overrides";
