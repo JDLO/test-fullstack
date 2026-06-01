@@ -23,11 +23,11 @@ public class JwtUtil {
     }
 
     public boolean validateToken(String token, String email){
-        final String username = exctractEmail(token);
-        return (username.equals(email) && isTokenExpired(token));
+        final String username = extractEmail(token);
+        return (username.equals(email) && !isTokenExpired(token));
     }
 
-    public String exctractEmail(String token){
+    public String extractEmail(String token){
         return Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
