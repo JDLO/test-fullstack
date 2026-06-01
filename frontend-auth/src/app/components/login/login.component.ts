@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit{
         if(response.status === 'success'){
            this.authService.saveToken(response.token);
            this.snackBar.open(response.message, 'Cerrar', { duration : 4000 });
-           console.log('Traditional token recive: ', response.token);
+           this.router.navigate(['/home']);
 
         }
       },
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit{
   }
 
   onSSOLogin(): void {
+    this.authService.initiateSSO();
   }
 
 }
