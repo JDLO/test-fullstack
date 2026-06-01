@@ -1,0 +1,276 @@
+@import "/src/assets/scss/1-settings/variables";
+@import "/src/assets/scss/3-tools/notouch-hover";
+
+.login-page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $white;
+
+  // ELEMENTO: Columna izquierda (Ilustración)
+  &__illustration-side {
+    flex: 1.1;
+    background-color: $neutral-99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  // ELEMENTO: Imagen o Ilustración dentro de la columna izquierda
+  &__image {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+  }
+
+  // ELEMENTO: Columna derecha (Zona del formulario)
+  &__form-side {
+    flex: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    position: relative; // Necesario para posicionar el footer de econocom de forma absoluta abajo
+  }
+
+  // ELEMENTO: Contenedor interno rígido para evitar que el formulario se deforme
+  &__form-container {
+    width: 100%;
+    max-width: 380px; // Ancho óptimo según el diseño visual proporcionado
+    display: flex;
+    flex-direction: column;
+  }
+
+  // ELEMENTO: Espaciado del Logotipo de la plataforma
+  &__logo {
+    margin-bottom: 40px;
+    align-self: center;
+
+    &-img {
+      height: 45px; // Altura sugerida para el logotipo realdooh
+      object-fit: contain;
+    }
+  }
+
+  // ELEMENTO: Título principal
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    color: $black;
+    margin: 0 0 24px 0;
+    align-self: center;
+  }
+
+  // ELEMENTO: Sección de ampliación SSO
+  &__sso-section {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  &__sso-text {
+    font-size: $font-s;
+    margin-bottom: 12px;
+    color: $black;
+  }
+
+  // ELEMENTO: Enlace y zona inferior para registrarse
+  &__signup-zone {
+    margin-top: 32px;
+    text-align: center;
+    font-size: $font-s;
+  }
+
+  &__signup-link {
+    font-size: inherit;
+    color: $primary;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: $primary;
+    }
+  }
+
+  // ELEMENTO: Footer corporativo en la parte inferior derecha
+  &__footer {
+    position: absolute;
+    bottom: 24px;
+    left: $spacing-xl;
+    right: $spacing-xl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $font-xs;
+    color: $neutral-50;
+  }
+
+  // ELEMENTO: Contenedor del selector de idioma (Mantiene el alineado flex)
+  &__lang-selector {
+    display: flex;
+    align-items: center;
+    color: $neutral-50;
+    font-size: $font-xs;
+  }
+
+  // ELEMENTO: Icono del planeta del idioma
+  &__lang-icon {
+    font-size: $font-m;
+    width: $spacing-m;
+    height: $spacing-m;
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__footer-logo {
+    height: 25.5px; // Ajuste para el logotipo inferior de econocom
+    object-fit: contain;
+  }
+
+  &__lang-form-field {
+    width: auto;
+
+    ::ng-deep {
+      .mat-mdc-text-field-wrapper {
+        padding: 0 !important;
+        height: auto !important;
+        background: transparent !important;
+      }
+
+      .mdc-notched-outline,
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border: none !important;
+      }
+
+      .mat-mdc-form-field-flex {
+        padding: 0 !important;
+        align-items: center !important;
+      }
+
+      .mat-mdc-form-field-infix {
+        padding: 0 !important;
+        min-height: unset !important;
+        width: auto !important;
+      }
+
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none !important;
+      }
+
+      .lang-select-panel {
+        width: fit-content !important;
+        min-width: auto !important;
+      }
+    }
+  }
+  
+  // ELEMENTO: El componente mat-select en sí mismo
+  &__lang-select {
+    font-size: $font-xs;
+    font-weight: 500;
+    color: $neutral-50;
+    cursor: pointer;
+
+    ::ng-deep .mat-mdc-select-arrow {
+      color: $neutral-50;
+      width: 10px;
+      height: 10px;
+    }
+    
+    ::ng-deep .mat-mdc-select-value {
+      max-width: max-content;
+      padding-right: 4px;
+    }
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; // Espaciado controlado entre inputs de Angular Material
+
+  // ELEMENTO: Input / Form-field individual
+  &__field {
+    width: 100%;
+
+    // Forzamos que los bordes respeten el aspecto limpio del diseño si fuese necesario
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      background-color: transparent;
+    }
+  }
+
+  // ELEMENTO: Botones del formulario
+  &__button {
+    width: 100%;
+    height: 46px;
+    font-size: $font-s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    transition: transform 0.1s, filter 0.2s;
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    // MODIFICADOR: Botón tradicional "ENTRAR" (Naranja Corporativo)
+    &--submit {
+      background-color: $primary !important;
+      color: $white !important;
+      margin-top: 8px;
+
+      @include notouch-hover {
+        &:not([disabled]) {
+          filter: brightness(1.1);
+        }
+      }
+
+      &[disabled] {
+        background-color: $neutral-90 !important;
+        color: $neutral-50 !important;
+      }
+    }
+
+    // // MODIFICADOR: Botón de Ampliación "ENTRAR CON DECATHLON" (Azul Corporativo)
+    &--sso {
+      background-color: $secondary !important;
+      color: $white !important;
+
+      @include notouch-hover {
+        filter: brightness(1.1);
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    // En tablets y móviles, ocultamos por completo la ilustración
+    &__illustration-side {
+      display: none;
+    }
+
+    // La columna del formulario se expande al 100%
+    &__form-side {
+      flex: 1;
+      padding: 24px;
+    }
+
+    // El footer deja de ser absoluto en móviles pequeños para evitar colisiones visuales
+    &__footer {
+      position: relative;
+      margin-top: 48px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0;
+    }
+  }
+}
