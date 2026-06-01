@@ -15,11 +15,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import { SsoCallbackComponent } from './components/sso-callback/sso-callback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    SsoCallbackComponent
   ],
   imports: [
     BrowserModule,
