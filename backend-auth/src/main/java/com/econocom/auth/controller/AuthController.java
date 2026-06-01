@@ -1,7 +1,8 @@
 package com.econocom.auth.controller;
 
 import com.econocom.auth.domain.dto.LoginRequest;
-import com.econocom.auth.security.JwtUtil;
+import com.econocom.auth.domain.dto.LoginResponse;
+import com.econocom.auth.service.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,30 +17,16 @@ import java.util.Map;
 public class AuthController {
 
     @Autowired
-    private JwtUtil jwtUtil;
+    private AuthServiceImpl authService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
-        String mockEmail = "admin@admin.com";
-        String mockPassword = "somepassword123";
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest){
+        LoginResponse response = this.authService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
 
-        if(mockEmail.equalsIgnoreCase(loginRequest.getEmail()) &&
-            mockPassword.equals(loginRequest.getPassword())){
-
-            String token = jwtUtil.generateToken(loginRequest.getEmail());
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("status", "success");
-            response.put("message", "Authentication success");
-            response.put("token", token);
-
+        if(response.getStatus().equals("success")){
             return ResponseEntity.ok(response);
         }else{
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("status", "error");
-            errorResponse.put("message", "Credentials are incorrect. Try again");
-
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
 }

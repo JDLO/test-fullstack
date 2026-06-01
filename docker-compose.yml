@@ -1,0 +1,28 @@
+services:
+  backend-service:
+    build:
+      context: ./backend-auth
+      dockerfile: Dockerfile
+    container_name: econocom-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - auth-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  frontend-service:
+    build:
+      context: ./frontend-auth
+      dockerfile: Dockerfile
+    container_name: econocom-frontend
+    ports:
+      - "4200:80"
+    networks:
+      - auth-network
+    depends_on:
+      - backend-service
+
+networks:
+  auth-network:
+    driver: bridge
