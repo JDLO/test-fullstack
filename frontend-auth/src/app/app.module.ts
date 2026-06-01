@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatSnackBarModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
