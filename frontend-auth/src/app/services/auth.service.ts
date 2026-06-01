@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../models/LoginRequest';
 import { Observable } from 'rxjs';
@@ -13,6 +13,15 @@ export class AuthService {
 
   login(credentials: LoginRequest): Observable<any> {
     return this.http.post(this.apiUrl + '/login', credentials);
+  }
+
+  initiateSSO(): void {
+    window.location.href = this.apiUrl + '/sso';
+  }
+
+  validateSsoCode(code: string): Observable<any> {
+    const params = new HttpParams().set('code', code);
+    return this.http.get(this.apiUrl + '/sso/callback', {params});
   }
 
   saveToken(token: string): void {
