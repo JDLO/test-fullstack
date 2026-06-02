@@ -78,4 +78,4 @@ Frontend disponible en http://localhost:4200
 ## Credenciales de prueba
 
 - Email: `admin@admin.com`
-- Password: `somepassword123`
+- Password: `password123`
